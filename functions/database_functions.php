@@ -108,3 +108,21 @@ function setCustomerId($name, $address, $city, $zip_code, $country)
 	$customerid = mysqli_insert_id($conn);
 	return $customerid;
 }
+
+
+function getPubName($conn, $pubid)
+{
+	$query = "SELECT publisher_name FROM publisher WHERE publisherid = '$pubid'";
+	$result = mysqli_query($conn, $query);
+	if (!$result) {
+		echo "Can't retrieve data " . mysqli_error($conn);
+		exit;
+	}
+	if (mysqli_num_rows($result) == 0) {
+		echo "Empty books ! Something wrong! check again";
+		exit;
+	} else {
+		$row = mysqli_fetch_assoc($result);
+		return $row['publisher_name'];
+	}
+}
