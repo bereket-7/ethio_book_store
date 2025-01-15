@@ -92,3 +92,19 @@ function getCustomerId($name, $address, $city, $zip_code, $country)
 		return null;
 	}
 }
+
+
+function setCustomerId($name, $address, $city, $zip_code, $country)
+{
+	$conn = db_connect();
+	$query = "INSERT INTO customers VALUES 
+			('', '" . $name . "', '" . $address . "', '" . $city . "', '" . $zip_code . "', '" . $country . "')";
+
+	$result = mysqli_query($conn, $query);
+	if (!$result) {
+		echo "insert false !" . mysqli_error($conn);
+		exit;
+	}
+	$customerid = mysqli_insert_id($conn);
+	return $customerid;
+}
