@@ -62,10 +62,44 @@ if (isset($_POST['add'])) {
 	}
 }
 ?>
-
-
+<form method="post" action="admin_add.php" enctype="multipart/form-data">
+	<table class="table">
+		<tr>
+			<th>ISBN</th>
+			<td><input type="text" name="isbn"></td>
+		</tr>
+		<tr>
+			<th>Title</th>
+			<td><input type="text" name="title" required></td>
+		</tr>
+		<tr>
+			<th>Author</th>
+			<td><input type="text" name="author" required></td>
+		</tr>
+		<tr>
+			<th>Image</th>
+			<td><input type="file" name="image"></td>
+		</tr>
+		<tr>
+			<th>Description</th>
+			<td><textarea name="descr" cols="40" rows="5"></textarea></td>
+		</tr>
+		<tr>
+			<th>Price</th>
+			<td><input type="text" name="price" required></td>
+		</tr>
+		<tr>
+			<th>Publisher</th>
+			<td><input type="text" name="publisher" required></td>
+		</tr>
+	</table>
+	<input type="submit" name="add" value="Add new book" class="btn btn-primary">
+	<input type="reset" value="cancel" class="btn btn-default">
+</form>
+<br />
+<?php
 if (isset($conn)) {
-mysqli_close($conn);
+	mysqli_close($conn);
 }
 
 require_once "./template/footer.php";
