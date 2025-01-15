@@ -58,3 +58,17 @@ function insertIntoOrder($conn, $customerid, $total_price, $date, $ship_name, $s
 		exit;
 	}
 }
+
+
+function getbookprice($isbn)
+{
+	$conn = db_connect();
+	$query = "SELECT book_price FROM books WHERE book_isbn = '$isbn'";
+	$result = mysqli_query($conn, $query);
+	if (!$result) {
+		echo "can't retrieve book price! " . mysqli_error($conn);
+		exit;
+	}
+	$row = mysqli_fetch_assoc($result);
+	return $row['book_price'];
+}
