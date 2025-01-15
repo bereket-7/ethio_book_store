@@ -35,3 +35,16 @@ function getBookByIsbn($conn, $isbn)
 	}
 	return $result;
 }
+
+
+function getOrderId($conn, $customerid)
+{
+	$query = "SELECT orderid FROM orders WHERE customerid = '$customerid'";
+	$result = mysqli_query($conn, $query);
+	if (!$result) {
+		echo "retrieve data failed!" . mysqli_error($conn);
+		exit;
+	}
+	$row = mysqli_fetch_assoc($result);
+	return $row['orderid'];
+}
